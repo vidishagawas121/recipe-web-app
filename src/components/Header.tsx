@@ -26,41 +26,24 @@ export default function Header() {
             Recipe Blog
           </Link>
 
-          <nav className="flex items-center space-x-8">
-            <Link
-              href="/categories"
-              className={`text-sm font-medium transition-colors ${
-                isActive('/categories')
-                  ? 'text-primary-600 dark:text-primary-400'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-              }`}
-            >
-              Categories
-            </Link>
-            <Link
-              href="/favorites"
-              className={`text-sm font-medium transition-colors ${
-                isActive('/favorites')
-                  ? 'text-primary-600 dark:text-primary-400'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-              }`}
-            >
-              Favorites
-            </Link>
-            <Link
-              href="/about"
-              className={`text-sm font-medium transition-colors ${
-                isActive('/about')
-                  ? 'text-primary-600 dark:text-primary-400'
-                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-              }`}
-            >
-              About
-            </Link>
+          <nav className="flex items-center space-x-4">
+            {navigation.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                  isActive(item.href)
+                    ? 'bg-primary-100 text-primary-600 dark:bg-primary-900/30 dark:text-primary-400'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white'
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
             <ThemePicker />
           </nav>
         </div>
       </div>
     </header>
   );
-} 
+}
